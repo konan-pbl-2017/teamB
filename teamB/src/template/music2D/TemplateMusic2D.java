@@ -39,6 +39,7 @@ public class TemplateMusic2D extends SimpleShootingGame {
 		stage = new Ground2D(null, "data\\images\\m101.jpg", windowSizeWidth,
 				windowSizeHeight);
 		universe.place(stage);
+		System.out.println("テスト中");
 
 		// 表示範囲を決める（左上が原点としてその原点から幅、高さを計算する）
 		setViewRange(30, 30);
