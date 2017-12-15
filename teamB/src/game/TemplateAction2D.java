@@ -20,7 +20,7 @@ public class TemplateAction2D extends SimpleActionGame {
 
 	// あとで設計変更
 	// Enemyクラスでこの値を使いたいため。
-	public static final int RANGE = 30;
+	public static final int RANGE = 40;
 
 	// プレイヤーの現在の速度が代入されるグローバル変数
 	private Velocity2D curV;
@@ -28,7 +28,7 @@ public class TemplateAction2D extends SimpleActionGame {
 	@Override
 	public void init(Universe universe) {
 		player = new Player();
-		player.setPosition(0.0, 0.0);
+		player.setPosition(20.0, 0.0);
 		player.setDirection(0.0, 0.0);
 		universe.place(player); // universeに置く。後で取り除けるようにオブジェクトを配置する。
 
@@ -38,19 +38,19 @@ public class TemplateAction2D extends SimpleActionGame {
 		universe.place(enemy); // universeに置く。後で取り除けるようにオブジェクトを配置する。
 
 		// ステージの3Dデータを読み込み配置する
-		stage = new Ground2D("data\\stage3\\stage3.wrl",
-				"data\\images\\m101.jpg", windowSizeWidth, windowSizeHeight);
+		stage = new Ground2D("data\\images\\stage.obj",
+				"data\\images\\gaikan2.jpg", windowSizeWidth, windowSizeHeight, 0.045);
 		universe.place(stage);
 
 		// 表示範囲を決める（左上が原点としてその原点から幅、高さを計算する）
-		setViewRange(RANGE, RANGE);
+		setViewRange(2*RANGE, RANGE);
 	}
 
 	@Override
 	public RWTFrame3D createFrame3D() {
 		// TODO Auto-generated method stub
 		RWTFrame3D f = new RWTFrame3D();
-		f.setSize(800, 800);
+		f.setSize(1600, 800);
 		// f.setExtendedState(Frame.MAXIMIZED_BOTH);
 		f.setTitle("Template for Action 2DGame");
 		return f;
