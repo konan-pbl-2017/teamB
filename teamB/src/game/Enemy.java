@@ -13,7 +13,7 @@ import framework.game2D.Velocity2D;
  * 
  */
 public class Enemy extends OvergroundActor2D {
-	private static final double ENEMY_SPEED = 2.2;
+	private static final double ENEMY_SPEED = 2.75;
 
 	@Override
 	public String getAnimationFileName() {
