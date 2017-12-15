@@ -13,7 +13,7 @@ import framework.game2D.Velocity2D;
  * 
  */
 public class Enemy extends OvergroundActor2D {
-	private static final double ENEMY_SPEED = 3.0;
+	private static final double ENEMY_SPEED = 2.2;
 
 	@Override
 	public String getAnimationFileName() {
@@ -22,7 +22,7 @@ public class Enemy extends OvergroundActor2D {
 
 	@Override
 	public String getModelFileName() {
-		return "data\\Head4.wrl";
+		return "data\\images\\Enemy.obj";
 	}
 	
 	public void motion(long interval, Ground2D ground, Player player) {
