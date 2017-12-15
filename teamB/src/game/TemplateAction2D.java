@@ -1,5 +1,7 @@
 package game;
 
+import java.util.ArrayList;
+
 import javax.vecmath.Vector2d;
 
 import framework.RWT.RWTFrame3D;
@@ -15,8 +17,10 @@ import framework.physics.PhysicsUtility;
 public class TemplateAction2D extends SimpleActionGame {
 	private Player player;
 	private Enemy enemy;
-
-	private Ground2D stage;
+    private Item item;
+    private Item item2;
+   private Ground2D stage; 
+   
 
 	// あとで設計変更
 	// Enemyクラスでこの値を使いたいため。
@@ -24,6 +28,9 @@ public class TemplateAction2D extends SimpleActionGame {
 
 	// プレイヤーの現在の速度が代入されるグローバル変数
 	private Velocity2D curV;
+	
+
+	
 
 	@Override
 	public void init(Universe universe) {
@@ -33,14 +40,28 @@ public class TemplateAction2D extends SimpleActionGame {
 		universe.place(player); // universeに置く。後で取り除けるようにオブジェクトを配置する。
 
 		enemy = new Enemy();
-		enemy.setPosition(1.0, 3.0);
+		enemy.setPosition(2.0, 0.0);
 		enemy.setDirection(1.0, 0.0);
 		universe.place(enemy); // universeに置く。後で取り除けるようにオブジェクトを配置する。
 
+		
+		item = new Item();
+		item.setPosition(4.0, 0.0);
+		item.setDirection(1.0, 0.0);
+		universe.place(item); // universeに置く。後で取り除けるようにオブジェクトを配置する。
+		
+		item2 = new Item();
+		item2.setPosition(3.0, 0.0);
+		item2.setDirection(1.0, 0.0);
+		universe.place(item2); // universeに置く。後で取り除けるようにオブジェクトを配置する。
+		
 		// ステージの3Dデータを読み込み配置する
 		stage = new Ground2D("data\\stage3\\stage3.wrl",
 				"data\\images\\m101.jpg", windowSizeWidth, windowSizeHeight);
 		universe.place(stage);
+		
+		// アイテム獲得時にスコアを表示
+		
 
 		// 表示範囲を決める（左上が原点としてその原点から幅、高さを計算する）
 		setViewRange(RANGE, RANGE);
@@ -91,14 +112,22 @@ public class TemplateAction2D extends SimpleActionGame {
 		
 		player.motion(interval, stage);
 		enemy.motion(interval, stage, player);
-
+		item.motion(interval, stage, player);
 		// 衝突判定（プレイヤーと敵）
 		if (player.checkCollision(enemy)) {
-			System.out.println("敵に接触した！");
+			System.out.println("敵に接触した");
 		}
+		
+	
+	
+// 衝突判定（プレイヤーとアイテム）
+		 
 
-	}
-
+			if (player.checkCollision(item)) {			
+				item.setPosition(6.0,13.0);		
+			}
+		}
+	
 	/**
 	 * ゲームのメイン
 	 * 
