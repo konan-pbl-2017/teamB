@@ -18,7 +18,8 @@ public class TemplateAction2D extends SimpleActionGame {
 	private Player player;
 	private Enemy enemy;
 	private ArrayList<Item> items = new ArrayList<Item>();
-//	private Item item;
+	private ArrayList<Item2> items2 = new ArrayList<Item2>();
+	private ArrayList<Item3> items3 = new ArrayList<Item3>();
 	private Ground2D stage;
 
 	// あとで設計変更
@@ -42,7 +43,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		((Object3D) enemy.getBody()).scale(0.0075);
 		universe.place(enemy); // universeに置く。後で取り除けるようにオブジェクトを配置する。
 		
-		Item item = new Item();
+		Item item = new Item();//itemの設置
 		item.setPosition(2.0, 3.0);
 		item.setDirection(1.0, 0.0);
 		((Object3D) item.getBody()).scale(0.01);
@@ -50,6 +51,19 @@ public class TemplateAction2D extends SimpleActionGame {
 		items.add(item);
 		
 		
+		Item2 item2 = new Item2();//item2の設置
+		item2.setPosition(5.0, 6.0);
+		item2.setDirection(1.0, 0.0);
+		((Object3D) item2.getBody()).scale(0.01);
+		universe.place(item2); // universeに置く。後で取り除けるようにオブジェクトを配置する。
+		items2.add(item2);
+		
+		Item3 item3 = new Item3();//item3の設置
+		item3.setPosition(12.0, 3.0);
+		item3.setDirection(1.0, 0.0);
+		((Object3D) item3.getBody()).scale(0.01);
+		universe.place(item3); // universeに置く。後で取り除けるようにオブジェクトを配置する。
+		items3.add(item3);
 		
 		// ステージの3Dデータを読み込み配置する
 		stage = new Ground2D("data\\images\\stage.obj",
@@ -110,7 +124,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		if (player.checkCollision(enemy)) {
 			System.out.println("敵に接触した！");
 		}
-		//衝突判定（プレイヤーとアイテム）
+		//衝突判定（プレイヤーとitem）
 		for (int i = 0; i < items.size(); i++)  {
 			Item item = items.get(i);
 			if (player.checkCollision(item)) {
@@ -121,6 +135,27 @@ public class TemplateAction2D extends SimpleActionGame {
 			}
 		}
 
+		//衝突判定（プレイヤーとitem2）
+		for (int j = 0; j < items2.size(); j++)  {
+			Item2 item2 = items2.get(j);
+			if (player.checkCollision(item2)) {
+				System.out.println("アイテムをゲット");
+				universe.displace(item2);
+				items2.remove(j);
+				j--;
+			}
+		}
+
+		//衝突判定（プレイヤーとitem3）
+		for (int j = 0; j < items3.size(); j++)  {
+			Item3 item3 = items3.get(j);
+			if (player.checkCollision(item3)) {
+				System.out.println("アイテムをゲット");
+				universe.displace(item3);
+				items3.remove(j);
+				j--;
+			}
+		}
 	}
 	
 
