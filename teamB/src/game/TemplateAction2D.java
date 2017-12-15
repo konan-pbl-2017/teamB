@@ -1,5 +1,7 @@
 package game;
 
+import java.util.ArrayList;
+
 import javax.vecmath.Vector2d;
 
 import framework.RWT.RWTFrame3D;
@@ -15,7 +17,8 @@ import framework.physics.PhysicsUtility;
 public class TemplateAction2D extends SimpleActionGame {
 	private Player player;
 	private Enemy enemy;
-
+	private ArrayList<Item> items = new ArrayList<Item>();
+//	private Item item;
 	private Ground2D stage;
 
 	// あとで設計変更
@@ -38,7 +41,16 @@ public class TemplateAction2D extends SimpleActionGame {
 		enemy.setDirection(1.0, 0.0);
 		((Object3D) enemy.getBody()).scale(0.01);
 		universe.place(enemy); // universeに置く。後で取り除けるようにオブジェクトを配置する。
-
+		
+		Item item = new Item();
+		item.setPosition(2.0, 3.0);
+		item.setDirection(1.0, 0.0);
+		((Object3D) item.getBody()).scale(0.01);
+		universe.place(item); // universeに置く。後で取り除けるようにオブジェクトを配置する。
+		items.add(item);
+		
+		
+		
 		// ステージの3Dデータを読み込み配置する
 		stage = new Ground2D("data\\images\\stage.obj",
 				"data\\images\\gaikan2.jpg", windowSizeWidth, windowSizeHeight, 0.045);
@@ -98,8 +110,19 @@ public class TemplateAction2D extends SimpleActionGame {
 		if (player.checkCollision(enemy)) {
 			System.out.println("敵に接触した！");
 		}
+		//衝突判定（プレイヤーとアイテム）
+		for (int i = 0; i < items.size(); i++)  {
+			Item item = items.get(i);
+			if (player.checkCollision(item)) {
+				System.out.println("アイテムをゲット");
+				universe.displace(item);
+				items.remove(i);
+				i--;
+			}
+		}
 
 	}
+	
 
 	/**
 	 * ゲームのメイン
