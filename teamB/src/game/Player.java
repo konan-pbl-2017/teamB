@@ -20,7 +20,7 @@ public class Player extends OvergroundActor2D {
 	}
 
 	public String getAnimationFileName() {
-		return "data\\TemplateShooting\\Character\\pocha\\walk.wrl";
+		return null;
 	}
 
 	public String getModelFileName() {

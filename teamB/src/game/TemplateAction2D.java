@@ -77,7 +77,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		if (virtualController.isKeyDown(0, RWTVirtualController.UP)) {
 			// ƒWƒƒƒ“ƒv
 			if (player.isOnGround()) {
-				curV.setY(10.0);
+				curV.setY(8.0);
 				player.setVelocity(curV);
 			}
 		}
