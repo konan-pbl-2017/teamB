@@ -30,11 +30,13 @@ public class TemplateAction2D extends SimpleActionGame {
 		player = new Player();
 		player.setPosition(0.0, 0.0);
 		player.setDirection(0.0, 0.0);
+		((Object3D) player.getBody()).scale(0.01);
 		universe.place(player); // universeに置く。後で取り除けるようにオブジェクトを配置する。
 
 		enemy = new Enemy();
 		enemy.setPosition(1.0, 3.0);
 		enemy.setDirection(1.0, 0.0);
+		((Object3D) enemy.getBody()).scale(0.01);
 		universe.place(enemy); // universeに置く。後で取り除けるようにオブジェクトを配置する。
 
 		// ステージの3Dデータを読み込み配置する

@@ -24,7 +24,7 @@ public class Player extends OvergroundActor2D {
 	}
 
 	public String getModelFileName() {
-		return "data\\TemplateShooting\\Character\\pocha\\pocha.wrl";
+		return "data\\images\\Hero.obj";
 	}
 
 	/**
