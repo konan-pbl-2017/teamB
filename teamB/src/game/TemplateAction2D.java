@@ -51,7 +51,7 @@ public class TemplateAction2D extends SimpleActionGame {
 	@Override
 	public void init(Universe universe) {
 		player = new Player();
-		player.setPosition(20.0, 0.0);
+		player.setPosition(20.0, 10.0);
 		player.setDirection(0.0, 0.0);
 		((Object3D) player.getBody()).scale(0.0075);
 		universe.place(player); // universeに置く。後で取り除けるようにオブジェクトを配置する。
@@ -138,10 +138,11 @@ public class TemplateAction2D extends SimpleActionGame {
 		items3.add(item33);
 		
 		// ステージの3Dデータを読み込み配置する
-		stage = new Ground2D("data\\images\\KDstage.obj",
+		
+		stage = new Ground2D("data\\images\\KDstage2.obj",
 				"data\\images\\gaikan2.jpg", windowSizeWidth, windowSizeHeight, 0.045);
 		universe.place(stage);
-
+		
 		// 表示範囲を決める（左上が原点としてその原点から幅、高さを計算する）
 		setViewRange(2*RANGE,RANGE);
 	}
@@ -150,7 +151,7 @@ public class TemplateAction2D extends SimpleActionGame {
 	public RWTFrame3D createFrame3D() {
 		// TODO Auto-generated method stub
 		RWTFrame3D f = new RWTFrame3D();
-		f.setSize(1600, 800);
+		f.setSize(1200, 600);
 		// f.setExtendedState(Frame.MAXIMIZED_BOTH);
 		f.setTitle("Template for Action 2DGame");
 		return f;

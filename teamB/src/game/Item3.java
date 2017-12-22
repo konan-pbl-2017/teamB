@@ -23,7 +23,7 @@
 
 		@Override
 		public String getModelFileName() {
-			return "data\\images\\Enemy.obj";
+			return "data\\images\\book.obj";
 		}
 		
 		public void motion(long interval, Ground2D ground, Player player) {
