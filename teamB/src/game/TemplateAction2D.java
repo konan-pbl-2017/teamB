@@ -43,6 +43,7 @@ public class TemplateAction2D extends SimpleActionGame {
 
 	// プレイヤーの現在の速度が代入されるグローバル変数
 	private Velocity2D curV;
+	Point point =new Point();//単位の計算用
 
 
 
@@ -82,6 +83,9 @@ public class TemplateAction2D extends SimpleActionGame {
 		((Object3D) item3.getBody()).scale(0.01);
 		universe.place(item3); // universeに置く。後で取り除けるようにオブジェクトを配置する。
 		items3.add(item3);
+		
+		Point point =new Point();
+		
 		
 		
    //アイテム設置
@@ -188,10 +192,10 @@ public class TemplateAction2D extends SimpleActionGame {
 		
 		player.motion(interval, stage);
 		enemy.motion(interval, stage, player);
-
 		// 衝突判定（プレイヤーと敵）
 		if (player.checkCollision(enemy)) {
 			System.out.println("敵に接触した！");
+			point.Genten();	
 		}
 		//衝突判定（プレイヤーとitem）
 		for (int i = 0; i < items.size(); i++)  {
@@ -201,8 +205,7 @@ public class TemplateAction2D extends SimpleActionGame {
 				universe.displace(item);
 				items.remove(i);
 				i--;
-				count++;
-				System.out.println("現在のポイントは"+count);
+				point.Katen(5);
 				
 			}
 		}
@@ -215,8 +218,7 @@ public class TemplateAction2D extends SimpleActionGame {
 				universe.displace(item2);
 				items2.remove(j);
 				j--;
-				count+=2;
-				System.out.println("現在のポイントは"+count);
+				point.Katen(10);
 			}
 		}
 
@@ -228,8 +230,7 @@ public class TemplateAction2D extends SimpleActionGame {
 				universe.displace(item3);
 				items3.remove(j);
 				j--;
-				count+=3;
-				System.out.println("現在のポイントは"+count);
+				point.Katen(15);				
 			}
 		}
 	}
