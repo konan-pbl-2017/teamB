@@ -44,6 +44,7 @@ public class TemplateAction2D extends SimpleActionGame {
 	
 	private IGameState initialGameState = null;
 	private IGameState finalGameState = null;
+	private IGameState clearGameState = null;
 	
 	public TemplateAction2D() {
 
@@ -68,6 +69,21 @@ public class TemplateAction2D extends SimpleActionGame {
 			public void init(RWTFrame3D frame) {
 				TemplateAction2D.this.frame = frame;
 				RWTContainer container = new EndingContainer(TemplateAction2D.this);
+				changeContainer(container);
+			}
+			@Override
+			public boolean useTimer() {
+				return false;
+			}
+			@Override
+			public void update(RWTVirtualController virtualController, long interval) {
+			}
+		};
+		clearGameState = new IGameState() {
+			@Override
+			public void init(RWTFrame3D frame) {
+				TemplateAction2D.this.frame = frame;
+				RWTContainer container = new ClearContainer(TemplateAction2D.this);
 				changeContainer(container);
 			}
 			@Override
@@ -169,7 +185,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		
 		// ステージの3Dデータを読み込み配置する
 		
-		stage = new Ground2D("data\\images\\KDstage2.obj",
+		stage = new Ground2D("data\\images\\KDstage3.obj",
 				"data\\images\\gaikan2.jpg", windowSizeWidth, windowSizeHeight, 0.045);
 		universe.place(stage);
 		
@@ -199,17 +215,17 @@ public class TemplateAction2D extends SimpleActionGame {
 		// キー操作の処理
 		// 左
 		if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
-			player.movePositionLeft(0.075);
+			player.movePositionLeft(0.15);
 		}
 		// 右
 		else if (virtualController.isKeyDown(0, RWTVirtualController.RIGHT)) {
-			player.movePositionRight(0.075);
+			player.movePositionRight(0.15);
 		}
 		// 上
 		if (virtualController.isKeyDown(0, RWTVirtualController.UP)) {
 			// ジャンプ
 			if (player.isOnGround()) {
-				curV.setY(10.0);
+				curV.setY(8.5);
 				player.setVelocity(curV);
 			}
 		}
@@ -267,7 +283,10 @@ public class TemplateAction2D extends SimpleActionGame {
 		int score=point.Tokuten();
 		if (score < 60) {
 			ending();
+		}else if(score > 150){
+			clear();
 		}
+		
 	}
 	/*
 	protected RWTContainer createRWTContainer() {
@@ -327,6 +346,11 @@ public class TemplateAction2D extends SimpleActionGame {
 	public void ending() {
 		stop();
 		setCurrentGameState(finalGameState);
+		start();
+	}
+	public void clear() {
+		stop();
+		setCurrentGameState(clearGameState);
 		start();
 	}
 	/*
