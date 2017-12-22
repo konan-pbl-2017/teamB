@@ -57,7 +57,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		universe.place(player); // universeに置く。後で取り除けるようにオブジェクトを配置する。
 
 		enemy = new Enemy();
-		enemy.setPosition(25.0, 2.0);
+		enemy.setPosition(-25.0, 2.0);
 		enemy.setDirection(0.0, 0.0);
 		((Object3D) enemy.getBody()).scale(0.0075);
 		universe.place(enemy); // universeに置く。後で取り除けるようにオブジェクトを配置する。
