@@ -169,7 +169,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		
 		// ステージの3Dデータを読み込み配置する
 		
-		stage = new Ground2D("data\\images\\KDstage2.obj",
+		stage = new Ground2D("data\\images\\KDstage3.obj",
 				"data\\images\\gaikan2.jpg", windowSizeWidth, windowSizeHeight, 0.045);
 		universe.place(stage);
 		
