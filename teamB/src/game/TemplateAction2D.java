@@ -94,6 +94,21 @@ public class TemplateAction2D extends SimpleActionGame {
 			public void update(RWTVirtualController virtualController, long interval) {
 			}
 		};
+		clearGameState = new IGameState() {
+			@Override
+			public void init(RWTFrame3D frame) {
+				TemplateAction2D.this.frame = frame;
+				RWTContainer container = new ClearContainer(TemplateAction2D.this);
+				changeContainer(container);
+			}
+			@Override
+			public boolean useTimer() {
+				return false;
+			}
+			@Override
+			public void update(RWTVirtualController virtualController, long interval) {
+			}
+		};
 		setCurrentGameState(initialGameState);
 	}
 	
