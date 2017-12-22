@@ -8,6 +8,7 @@ import framework.RWT.RWTContainer;
 import framework.RWT.RWTLabel;
 import framework.RWT.RWTVirtualController;
 import framework.RWT.RWTVirtualKey;
+import framework.game2D.Ground2D;
 
 public class EndingContainer extends RWTContainer {
 	private TemplateAction2D game;
@@ -19,9 +20,9 @@ public class EndingContainer extends RWTContainer {
 	@Override
 	public void build(GraphicsConfiguration gc) {
 		RWTLabel startLabel = new RWTLabel();
-		startLabel.setString("Finish");
-		startLabel.setRelativePosition(0.3f, 0.5f);
-		Font f = new Font("", Font.PLAIN, 60);
+		startLabel.setString("Game Over");
+		startLabel.setRelativePosition(0.2f, 0.5f);
+		Font f = new Font("", Font.PLAIN, 60);		
 		startLabel.setFont(f);
 		addWidget(startLabel);
 	}

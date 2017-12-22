@@ -112,7 +112,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		universe.place(enemy); // universeに置く。後で取り除けるようにオブジェクトを配置する。
 		
 		Item item = new Item();//itemの設置
-		item.setPosition(-24.0, 16.0);
+		item.setPosition(-24.0, 15.0);
 		item.setDirection(1.0, 0.0);
 		((Object3D) item.getBody()).scale(0.01);
 		universe.place(item); // universeに置く。後で取り除けるようにオブジェクトを配置する。
@@ -127,7 +127,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		items2.add(item2);
 		
 		Item3 item3 = new Item3();//item3の設置
-		item3.setPosition(-56.0, 16.0);
+		item3.setPosition(-56.0, 13.0);
 		item3.setDirection(1.0, 0.0);
 		((Object3D) item3.getBody()).scale(0.01);
 		universe.place(item3); // universeに置く。後で取り除けるようにオブジェクトを配置する。
@@ -153,7 +153,7 @@ public class TemplateAction2D extends SimpleActionGame {
 				//アイテム2
 
 		Item2 item22 = new Item2();//item2の設置
-		item22.setPosition(-64.0, 20.0);
+		item22.setPosition(-64.0, 19.0);
 		item22.setDirection(1.0, 0.0);
 		((Object3D) item22.getBody()).scale(0.01);
 		universe.place(item22); // universeに置く。後で取り除けるようにオブジェクトを配置する。
@@ -169,7 +169,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		
 		//アイテム3
 		Item3 item23 = new Item3();//item3の設置
-		item23.setPosition(-74.0, 20.0);
+		item23.setPosition(-74.0, 18.5);
 		item23.setDirection(1.0, 0.0);
 		((Object3D) item23.getBody()).scale(0.01);
 		universe.place(item23); // universeに置く。後で取り除けるようにオブジェクトを配置する。
@@ -177,7 +177,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		
 		
 		Item3 item33 = new Item3();//item3の設置
-		item33.setPosition(-84.0, 19.0);
+		item33.setPosition(-84.0, 16.0);
 		item33.setDirection(1.0, 0.0);
 		((Object3D) item33.getBody()).scale(0.01);
 		universe.place(item33); // universeに置く。後で取り除けるようにオブジェクトを配置する。
@@ -270,21 +270,23 @@ public class TemplateAction2D extends SimpleActionGame {
 		}
 
 		//衝突判定（プレイヤーとitem3）
-		for (int j = 0; j < items3.size(); j++)  {
-			Item3 item3 = items3.get(j);
+		for (int k = 0; k < items3.size(); k++)  {
+			Item3 item3 = items3.get(k);
 			if (player.checkCollision(item3)) {
 				System.out.println("アイテムをゲット");
 				universe.displace(item3);
-				items3.remove(j);
-				j--;
+				items3.remove(k);
+				k--;
 				point.Katen(15);
 			}
 		}
 		int score=point.Tokuten();
 		if (score < 60) {
 			ending();
+			point.Reset();
 		}else if(score > 150){
 			clear();
+
 		}
 		
 	}
