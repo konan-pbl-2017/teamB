@@ -19,8 +19,8 @@ public class StartContainer extends RWTContainer {
 	@Override
 	public void build(GraphicsConfiguration gc) {
 		RWTLabel startLabel = new RWTLabel();
-		startLabel.setString("Start");
-		startLabel.setRelativePosition(0.3f, 0.5f);
+		startLabel.setString("press b key");
+		startLabel.setRelativePosition(0.18f, 0.55f);
 		Font f = new Font("", Font.PLAIN, 60);
 		startLabel.setFont(f);
 		addWidget(startLabel);
