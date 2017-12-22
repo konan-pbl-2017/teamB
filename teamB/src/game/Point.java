@@ -13,4 +13,7 @@ public class Point {
 	void Show(){
 		System.out.println(Tani);
 	}
+	int Tokuten(){
+		return Tani;
+	}
 }

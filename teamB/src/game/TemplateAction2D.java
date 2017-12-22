@@ -7,9 +7,6 @@ import java.util.ArrayList;
 
 import javax.vecmath.Vector2d;
 
-import template.shooting2D.StartContainer;
-import template.shooting2D.TemplateShooting2DMultiStates;
-
 import framework.RWT.RWTBoard;
 import framework.RWT.RWTCanvas3D;
 import framework.RWT.RWTContainer;
@@ -44,9 +41,45 @@ public class TemplateAction2D extends SimpleActionGame {
 	// プレイヤーの現在の速度が代入されるグローバル変数
 	private Velocity2D curV;
 	Point point =new Point();//単位の計算用
+	
+	private IGameState initialGameState = null;
+	private IGameState finalGameState = null;
+	
+	public TemplateAction2D() {
 
-
-
+		super();
+		initialGameState = new IGameState() {
+			@Override
+			public void init(RWTFrame3D frame) {
+				TemplateAction2D.this.frame = frame;
+				RWTContainer container = new StartContainer(TemplateAction2D.this);
+				changeContainer(container);
+			}
+			@Override
+			public boolean useTimer() {
+				return false;
+			}
+			@Override
+			public void update(RWTVirtualController virtualController, long interval) {
+			}
+		};
+		finalGameState = new IGameState() {
+			@Override
+			public void init(RWTFrame3D frame) {
+				TemplateAction2D.this.frame = frame;
+				RWTContainer container = new EndingContainer(TemplateAction2D.this);
+				changeContainer(container);
+			}
+			@Override
+			public boolean useTimer() {
+				return false;
+			}
+			@Override
+			public void update(RWTVirtualController virtualController, long interval) {
+			}
+		};
+		setCurrentGameState(initialGameState);
+	}
 	
 	@Override
 	public void init(Universe universe) {
@@ -83,9 +116,6 @@ public class TemplateAction2D extends SimpleActionGame {
 		((Object3D) item3.getBody()).scale(0.01);
 		universe.place(item3); // universeに置く。後で取り除けるようにオブジェクトを配置する。
 		items3.add(item3);
-		
-		Point point =new Point();
-		
 		
 		
    //アイテム設置
@@ -230,8 +260,12 @@ public class TemplateAction2D extends SimpleActionGame {
 				universe.displace(item3);
 				items3.remove(j);
 				j--;
-				point.Katen(15);				
+				point.Katen(15);
 			}
+		}
+		int score=point.Tokuten();
+		if (score < 60) {
+			ending();
 		}
 	}
 	/*
@@ -275,17 +309,36 @@ public class TemplateAction2D extends SimpleActionGame {
 		};
 	}
 	*/
+	
+	public void restart() {
+		stop();
+		setCurrentGameState(initialGameState);
+		start();
+	}
+	
+	public void play() {
+		stop();
+		setCurrentGameState(this);
+		start();
+	}
+	
+	//エンディング画面
+	public void ending() {
+		stop();
+		setCurrentGameState(finalGameState);
+		start();
+	}
 	/*
 	 * ゲームのメイン
 	 * 
 	 * @param args
 	 */
-public static void main(String[] args) {
-		TemplateAction2D game = new TemplateAction2D();
-		game.setFramePolicy(5, 33, false);
-		game.start();
-}
-	
+	public static void main(String[] args) {
+			TemplateAction2D game = new TemplateAction2D();
+			game.setFramePolicy(5, 33, false);
+			game.start();
+	}
+		
 		
 	@Override
 	public OvergroundActor2D getOvergroundActor() {
