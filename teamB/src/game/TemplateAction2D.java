@@ -267,6 +267,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		int score=point.Tokuten();
 		if (score < 60) {
 			ending();
+			point.Reset();
 		}
 	}
 	/*
