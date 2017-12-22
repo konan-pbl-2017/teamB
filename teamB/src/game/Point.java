@@ -6,6 +6,9 @@ public class Point {
 		Tani=Tani-1;
 		Show();
 	}
+	void Reset(){
+		Tani=129;
+	}
 	void Katen(int item){
 		Tani=Tani+item;
 		Show();
