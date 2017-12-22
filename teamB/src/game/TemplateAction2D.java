@@ -205,8 +205,7 @@ public class TemplateAction2D extends SimpleActionGame {
 				universe.displace(item);
 				items.remove(i);
 				i--;
-				count++;
-				System.out.println("現在のポイントは"+count);
+				point.Katen(5);
 				
 			}
 		}
@@ -219,8 +218,7 @@ public class TemplateAction2D extends SimpleActionGame {
 				universe.displace(item2);
 				items2.remove(j);
 				j--;
-				count+=2;
-				System.out.println("現在のポイントは"+count);
+				point.Katen(10);
 			}
 		}
 
@@ -232,8 +230,7 @@ public class TemplateAction2D extends SimpleActionGame {
 				universe.displace(item3);
 				items3.remove(j);
 				j--;
-				count+=3;
-				System.out.println("現在のポイントは"+count);
+				point.Katen(15);				
 			}
 		}
 	}
